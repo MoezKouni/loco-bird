@@ -1,0 +1,13 @@
+.chatarea {
+  display: flex;
+  flex: 0.95;
+  background: rgb(231, 231, 232);
+  background: linear-gradient(
+    90deg,
+    rgba(231, 231, 232, 1) 0%,
+    rgba(244, 243, 248, 1) 5%
+  );
+  border: 10px solid white;
+  border-radius: 20px;
+  padding: 20px;
+}

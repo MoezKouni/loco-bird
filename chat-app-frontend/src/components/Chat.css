@@ -1,0 +1,113 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid rgba(128, 128, 128, 0.13);
+  padding: 20px;
+  flex: 0.75;
+  position: relative;
+}
+.chat__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.chat__header__name {
+  display: flex;
+  align-items: center;
+}
+.chat__header__name span {
+  margin-left: 10px;
+  font-size: x-large;
+  font-weight: 500;
+}
+.chat__body {
+  margin: 30px 0px;
+  margin-bottom: 60px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+/* CUSTOM SCROLLBAR */
+.chat__body::-webkit-scrollbar {
+  width: 5px;
+}
+.chat__body::-webkit-scrollbar-track {
+  background: #c2c2c283;
+}
+.chat__body::-webkit-scrollbar-thumb {
+  background: #6b6b6b65;
+}
+.chat__body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* FINISH CUSTOM SCROLLBAR */
+.chat__body__message {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
+.chat__body__message__text {
+  width: 50%;
+  background: #34a5e9;
+  padding: 20px;
+  border-radius: 10px 10px 0px 10px;
+  margin-right: 10px;
+  color: white;
+  line-height: 25px;
+}
+.receiver {
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+.text-received {
+  border-radius: 10px 10px 10px 0px;
+  /* margin: 20px 0; */
+  background: white;
+  color: black;
+}
+.chat__footer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  box-sizing: border-box;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+.chat__footer__addbutton {
+  font-size: large;
+  background: #34a4e9d5;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.chat__footer__addbutton:focus {
+  outline: none;
+}
+.chat__footer__input {
+  width: 100%;
+  border: none;
+  padding: 20px 25px;
+  font-size: large;
+  outline: none;
+}
+.chat__footer__send {
+  color: white;
+  background: #34a5e9;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.receiver > .MuiAvatar-root {
+  margin-right: 10px;
+}

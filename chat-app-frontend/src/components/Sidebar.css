@@ -1,0 +1,33 @@
+.sidebar {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+.sidebar__logo {
+  width: 100px;
+  padding: 10px 0px 10px 10px;
+}
+.sidebar__menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+}
+.sidebar__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar__content {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+}
+.sidebar__main__menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
