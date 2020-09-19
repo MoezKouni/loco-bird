@@ -37,15 +37,8 @@ const govs = [
 const UpdateProfile = ({ option }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [editClicked, setEditClicked] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(
-    new Date("1992-12-07T20:00:00")
-  );
 
   const theme = useSelector((state) => state.theme);
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -104,8 +97,13 @@ const UpdateProfile = ({ option }) => {
                   id="input"
                   className="Input-text"
                   placeholder="Email Address"
+                  style={{ color: "black" }}
                 />
-                <label htmlFor="input" className="Input-label">
+                <label
+                  htmlFor="input"
+                  className="Input-label"
+                  style={{ color: theme.name === "dark" && "white" }}
+                >
                   Email Address
                 </label>
               </div>
@@ -115,8 +113,13 @@ const UpdateProfile = ({ option }) => {
                   id="input"
                   className="Input-text"
                   placeholder="Phone Number"
+                  style={{ color: "black" }}
                 />
-                <label htmlFor="input" className="Input-label">
+                <label
+                  htmlFor="input"
+                  className="Input-label"
+                  style={{ color: theme.name === "dark" && "white" }}
+                >
                   Phone Number
                 </label>
               </div>
@@ -131,8 +134,13 @@ const UpdateProfile = ({ option }) => {
                   id="input"
                   className="Input-text"
                   placeholder="Address"
+                  style={{ color: "black" }}
                 />
-                <label htmlFor="input" className="Input-label">
+                <label
+                  htmlFor="input"
+                  className="Input-label"
+                  style={{ color: theme.name === "dark" && "white" }}
+                >
                   Address
                 </label>
               </div>
@@ -142,8 +150,13 @@ const UpdateProfile = ({ option }) => {
                   id="input"
                   className="Input-text"
                   placeholder="City"
+                  style={{ color: "black" }}
                 />
-                <label htmlFor="input" className="Input-label">
+                <label
+                  htmlFor="input"
+                  className="Input-label"
+                  style={{ color: theme.name === "dark" && "white" }}
+                >
                   City
                 </label>
               </div>
@@ -172,11 +185,16 @@ const UpdateProfile = ({ option }) => {
                   type="date"
                   className="date_of_birth_input Input-text"
                   id="dob"
+                  style={{ color: "black" }}
                 />
                 <label
                   htmlFor="dob"
                   className="Input-label"
-                  style={{ top: "20%", bottom: "100%" }}
+                  style={{
+                    top: "20%",
+                    bottom: "100%",
+                    color: theme.name === "dark" && "white",
+                  }}
                 >
                   Date of birth
                 </label>
@@ -189,11 +207,16 @@ const UpdateProfile = ({ option }) => {
                 id="bio"
                 className="bio_textarea Input-text"
                 placeholder="Bio"
+                style={{ color: "black" }}
               ></textarea>
               <label
                 htmlFor="bio"
                 className="Input-label"
-                style={{ top: "20%", bottom: "100%" }}
+                style={{
+                  top: "20%",
+                  bottom: "100%",
+                  color: theme.name === "dark" && "white",
+                }}
               >
                 Bio
               </label>

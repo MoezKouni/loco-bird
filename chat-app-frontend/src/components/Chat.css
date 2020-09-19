@@ -111,3 +111,6 @@
 .receiver > .MuiAvatar-root {
   margin-right: 10px;
 }
+.chat__body__message .MuiButtonBase-root:hover {
+  opacity: 1 !important;
+}

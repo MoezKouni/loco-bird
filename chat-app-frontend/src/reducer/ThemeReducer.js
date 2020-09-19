@@ -1,4 +1,4 @@
-import { CHANGE_THEME } from "../actions/types";
+import { CHANGE_THEME, PIN_TOGGLER, CHANGE_COLOR } from "../actions/types";
 
 let initState = {
   name: "light",
@@ -9,6 +9,8 @@ let initState = {
   gradientBgColor:
     "linear-gradient( 90deg, rgba(231, 231, 232, 1) 0%, rgba(244, 243, 248, 1) 5% )",
   secondBgColor: "white",
+  pinToggle: true,
+  themeColor: "blue",
 };
 
 const ThemeReducer = (state = initState, { type, payload }) => {
@@ -16,17 +18,18 @@ const ThemeReducer = (state = initState, { type, payload }) => {
     case CHANGE_THEME:
       if (payload === "dark") {
         return {
+          ...state,
           name: "dark",
           iconColors: "white",
           buttonBg: "gray",
           textColor: "white",
-          mainBgColor: "#212121",
-          gradientBgColor:
-            "linear-gradient(90deg, rgba(24,24,23,1) 0%, rgba(11,12,7,1) 5%)",
-          secondBgColor: "#2E2E2E",
+          mainBgColor: "##292C35",
+          gradientBgColor: "#292C35",
+          secondBgColor: "#16181d",
         };
       } else {
         return {
+          ...state,
           name: "light",
           iconColors: "gray",
           textColor: "black",
@@ -36,6 +39,16 @@ const ThemeReducer = (state = initState, { type, payload }) => {
           secondBgColor: "white",
         };
       }
+    case PIN_TOGGLER:
+      return {
+        ...state,
+        pinToggle: !state.pinToggle,
+      };
+    case CHANGE_COLOR:
+      return {
+        ...state,
+        themeColor: payload,
+      };
     default:
       return state;
   }

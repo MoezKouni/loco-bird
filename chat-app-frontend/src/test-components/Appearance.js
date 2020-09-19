@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { changeTheme } from "../actions/ThemeActions";
+import { changeTheme, pinToggler, changeColor } from "../actions/ThemeActions";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Typography,
@@ -13,12 +13,15 @@ import "../components/Appearance.css";
 const Appearance = () => {
   const theme = useSelector((state) => state.theme);
   const [selectedValue, setSelectedValue] = useState(theme.name);
-  const [checked, setChecked] = useState(false);
   useEffect(() => {
     setSelectedValue(theme.name);
   }, [theme]);
 
   const dispatch = useDispatch();
+
+  const handleColor = (e) => {
+    dispatch(changeColor(e.target.className));
+  };
 
   return (
     <Container>
@@ -72,18 +75,31 @@ const Appearance = () => {
           <FormControlLabel
             control={
               <Checkbox
-                checked={checked}
-                onChange={() => setChecked(!checked)}
+                checked={theme.pinToggle}
+                onChange={() => dispatch(pinToggler())}
                 name="jason"
                 color="secondary"
+                style={{ marginLeft: "auto" }}
               />
             }
             label="Want to switch theme from the menu?"
           />
-        </div>
-        <div class="toggle">
-          <input type="checkbox" id="toggle" />
-          <label for="toggle"></label>
+          <div className="appearance__default_conversation_color">
+            <Typography variant="h4">Select your favorite color</Typography>
+            <Typography variant="caption">
+              The color selected will be applied to the active icons and will be
+              the default color for every conversation.
+            </Typography>
+            <div className="appearance__colors">
+              <div className="blue" onClick={handleColor}></div>
+              <div className="red" onClick={handleColor}></div>
+              <div className="yellow" onClick={handleColor}></div>
+              <div className="green" onClick={handleColor}></div>
+              <div className="purple" onClick={handleColor}></div>
+              <div className="pink" onClick={handleColor}></div>
+              <div className="orange" onClick={handleColor}></div>
+            </div>
+          </div>
         </div>
       </div>
     </Container>

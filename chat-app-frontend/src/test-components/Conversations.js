@@ -12,13 +12,19 @@ const Conversations = () => {
       <div className="conversations__header">
         <button
           className="conversations__header-button"
-          style={{ background: theme.buttonBg, color: theme.textColor }}
+          style={{
+            background: theme.name === "light" ? "white" : theme.buttonBg,
+            color: theme.textColor,
+          }}
         >
           +
         </button>
         <span
           className="conversations__header-newConversation"
-          style={{ background: theme.buttonBg, color: theme.textColor }}
+          style={{
+            background: theme.name === "light" ? "white" : theme.buttonBg,
+            color: theme.textColor,
+          }}
         >
           New Conversation
         </span>
@@ -26,7 +32,7 @@ const Conversations = () => {
       <div className="conversations__title">
         <h1>Chats</h1>
         <IconButton>
-          <MoreHorizIcon />
+          <MoreHorizIcon style={{ color: theme.iconColors }} />
         </IconButton>
       </div>
       <div className="conversations__search">
