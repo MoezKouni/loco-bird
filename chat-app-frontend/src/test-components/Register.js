@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../components/Register.css";
 import { IconButton, Typography } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import FastForwardIcon from "@material-ui/icons/FastForward";
 import PersonalInfo from "./PersonalInfo";
 import AccountInfo from "./AccountInfo";
+import { useSelector } from "react-redux";
 
 const Register = ({ history }) => {
   const [info, setInfo] = useState({
@@ -21,6 +22,12 @@ const Register = ({ history }) => {
   });
   const [confirmPwd, setConfirmPwd] = useState("");
   const [step, setStep] = useState("personal");
+  const auth = useSelector((state) => state.auth);
+  useEffect(() => {
+    if (auth.isAuth) {
+      history.push("/home");
+    }
+  }, [auth.isAuth]);
 
   const handleChange = (e) => {
     if (e.target.name === "confirm_password") {

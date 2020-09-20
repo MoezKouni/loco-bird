@@ -14,6 +14,7 @@ import { changeTheme } from "../actions/ThemeActions";
 
 const Sidebar = ({ children }) => {
   const theme = useSelector((state) => state.theme);
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const location = useLocation();
   // #F2A5C4  pink
@@ -79,7 +80,7 @@ const Sidebar = ({ children }) => {
               <ChatBubbleIcon
                 style={{
                   fill:
-                    location.pathname === "/" &&
+                    location.pathname === "/home" &&
                     (theme.themeColor === "blue"
                       ? "#34A5E9"
                       : theme.themeColor),
@@ -144,7 +145,7 @@ const Sidebar = ({ children }) => {
             <GroupAddIcon style={{ color: theme.iconColors }} />
           </IconButton>
           <IconButton>
-            <Avatar style={{ color: theme.iconColors }} />
+            <Avatar src={auth.user && auth.user.avatar} />
           </IconButton>
         </div>
       </div>

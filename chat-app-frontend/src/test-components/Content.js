@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../components/ChatArea.css";
 import Conversations from "./Conversations";
 import Chat from "./Chat";
 import UserInfo from "./UserInfo";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { loadUser } from "../actions/AuthActions";
 
 const Content = () => {
   const { gradientBgColor, textColor, secondBgColor } = useSelector(
     (state) => state.theme
   );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadUser());
+  }, []);
   return (
     <div
       className="chatarea row"

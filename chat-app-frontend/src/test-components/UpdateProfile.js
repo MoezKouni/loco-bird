@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -37,8 +37,13 @@ export const govs = [
 const UpdateProfile = ({ option }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [editClicked, setEditClicked] = useState(false);
+  const [info, setInfo] = useState({});
 
   const theme = useSelector((state) => state.theme);
+  const { user } = useSelector((state) => state.auth);
+  useEffect(() => {
+    setInfo(user);
+  }, [user]);
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -47,7 +52,7 @@ const UpdateProfile = ({ option }) => {
           <div className="col-12 update__header">
             <div className="update__header__img">
               <img
-                src="https://joyonlineschool.com/static/emptyuserphoto.png"
+                src={info.avatar}
                 alt="avatar"
                 className="update__img__avatar"
               />
@@ -72,13 +77,13 @@ const UpdateProfile = ({ option }) => {
               )}
               {editClicked ? (
                 <div className="update__name__inputs">
-                  <input type="text" value="Moez" />
-                  <input type="text" value="El Kouni" />
+                  <input type="text" value={info.first_name} />
+                  <input type="text" value={info.last_name} />
                 </div>
               ) : (
                 <div>
-                  <Typography variant="h3">Moez</Typography>
-                  <Typography variant="h3">El Kouni</Typography>
+                  <Typography variant="h3">{info.first_name}</Typography>
+                  <Typography variant="h3">{info.last_name}</Typography>
                 </div>
               )}
             </div>
@@ -98,6 +103,7 @@ const UpdateProfile = ({ option }) => {
                   className="Input-text"
                   placeholder="Email Address"
                   style={{ color: "black" }}
+                  value={info.email}
                 />
                 <label
                   htmlFor="input"
@@ -114,6 +120,7 @@ const UpdateProfile = ({ option }) => {
                   className="Input-text"
                   placeholder="Phone Number"
                   style={{ color: "black" }}
+                  value={info.phone}
                 />
                 <label
                   htmlFor="input"
@@ -135,6 +142,7 @@ const UpdateProfile = ({ option }) => {
                   className="Input-text"
                   placeholder="Address"
                   style={{ color: "black" }}
+                  value={info.address}
                 />
                 <label
                   htmlFor="input"
@@ -151,6 +159,7 @@ const UpdateProfile = ({ option }) => {
                   className="Input-text"
                   placeholder="City"
                   style={{ color: "black" }}
+                  value={info.city}
                 />
                 <label
                   htmlFor="input"
@@ -170,7 +179,7 @@ const UpdateProfile = ({ option }) => {
               }}
             >
               <div className="select-container">
-                <select>
+                <select value={info.gov}>
                   <option value="none">None</option>
                   {govs.map((el, i) => (
                     <option key={i} value={el}>
@@ -186,6 +195,7 @@ const UpdateProfile = ({ option }) => {
                   className="date_of_birth_input Input-text"
                   id="dob"
                   style={{ color: "black" }}
+                  value={info.date_of_birth}
                 />
                 <label
                   htmlFor="dob"
@@ -208,6 +218,7 @@ const UpdateProfile = ({ option }) => {
                 className="bio_textarea Input-text"
                 placeholder="Bio"
                 style={{ color: "black" }}
+                value={info.bio}
               ></textarea>
               <label
                 htmlFor="bio"

@@ -6,6 +6,7 @@ import Settings from "./Settings";
 import Sidebar from "./Sidebar";
 import Login from "./Login";
 import Register from "./Register";
+import PrivateRoute from "./PrivateRoute";
 
 const App = () => {
   return (
@@ -15,8 +16,8 @@ const App = () => {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Sidebar>
-          <Route path="/home" component={Content} />
-          <Route path="/settings" component={Settings} />
+          <PrivateRoute path="/home" component={Content} />
+          <PrivateRoute path="/settings" component={Settings} />
         </Sidebar>
       </Switch>
     </Router>

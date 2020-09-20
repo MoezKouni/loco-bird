@@ -3,10 +3,13 @@ import { IconButton } from "@material-ui/core";
 import DoneAllIcon from "@material-ui/icons/DoneAll";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
+import { useDispatch } from "react-redux";
+import { register } from "../actions/AuthActions";
 
 const AccountInfo = ({ info, handleChange, next, confirmPwd }) => {
   const [show, setShow] = useState(false);
   const [showPwd, setShowPwd] = useState(false);
+  const dispatch = useDispatch();
   return (
     <div className="col-md-6 col-6 update__body">
       <div className="Input" style={{ marginTop: 30 }}>
@@ -96,7 +99,10 @@ const AccountInfo = ({ info, handleChange, next, confirmPwd }) => {
         info.password &&
         info.phone &&
         confirmPwd === info.password && (
-          <IconButton style={{ alignSelf: "center" }}>
+          <IconButton
+            style={{ alignSelf: "center" }}
+            onClick={() => dispatch(register(info))}
+          >
             <span>Confirm </span>
             <DoneAllIcon />
           </IconButton>

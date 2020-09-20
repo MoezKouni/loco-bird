@@ -1,10 +1,31 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../components/Login.css";
 import { Typography, IconButton } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
+import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../actions/AuthActions";
 
 const Login = ({ history }) => {
+  const [show, setShow] = useState(false);
+  const [info, setInfo] = useState({
+    email: "",
+    password: "",
+  });
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    inputRef.current.focus();
+    if (auth.isAuth) {
+      history.push("/home");
+    }
+  }, [auth.isAuth]);
+  const inputRef = useRef();
+  const handleChange = (e) => {
+    setInfo({ ...info, [e.target.name]: e.target.value });
+  };
   return (
     <div className="login">
       <div className="login__left">
@@ -50,11 +71,14 @@ const Login = ({ history }) => {
         <form>
           <div className="Input">
             <input
+              ref={inputRef}
               type="text"
               id="input"
               className="Input-text"
               placeholder="Email Address"
               style={{ color: "black", borderColor: "#34a5e9" }}
+              name="email"
+              onChange={handleChange}
             />
             <label htmlFor="input" className="Input-label">
               Email Address
@@ -62,17 +86,38 @@ const Login = ({ history }) => {
           </div>
           <div className="Input">
             <input
-              type="text"
+              type={show ? "text" : "password"}
               id="input"
               className="Input-text"
               placeholder="Password"
               style={{ color: "black", borderColor: "#34a5e9" }}
+              name="password"
+              onChange={handleChange}
             />
             <label htmlFor="input" className="Input-label">
               Password
             </label>
+            <span className="show_hide_eye">
+              {show ? (
+                <IconButton onClick={() => setShow(!show)}>
+                  <VisibilityOutlinedIcon style={{ fontSize: 20 }} />
+                </IconButton>
+              ) : (
+                <IconButton onClick={() => setShow(!show)}>
+                  <VisibilityOffOutlinedIcon style={{ fontSize: 20 }} />
+                </IconButton>
+              )}
+            </span>
           </div>
-          <button className="login__btn">Log in</button>
+          <button
+            className="login__btn"
+            onClick={(e) => {
+              e.preventDefault();
+              dispatch(login(info));
+            }}
+          >
+            Log in
+          </button>
         </form>
         <Typography variant="subtitle1" className="create_account">
           Don't have an account? <Link to="/register">Register now!</Link>
