@@ -4,7 +4,7 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
-const User = require("../model/User");
+const User = require("../models/User");
 const genToken = require("../helpers/genToken");
 
 // Register Route
@@ -19,6 +19,9 @@ router.post(
       "your phone number, we won't call you, don't worry!"
     ).notEmpty(),
     body("address", "please tell us where are your living!").notEmpty(),
+    body("city", "please tell us where are your living!").notEmpty(),
+    body("gov", "please tell us where are your living!").notEmpty(),
+    body("gender", "Male of Female?").notEmpty(),
     body("date_of_birth", "please write your date of birth!").notEmpty(),
     body(
       "password",
@@ -31,10 +34,10 @@ router.post(
       return res.status(400).json({ msg: errors.array() });
     }
 
-    let randomNum = Math.floor(Math.random() * 100) % 40;
+    let randomNum = Math.floor(Math.random() * 1000) % 90;
     let newUser = new User({
       ...req.body,
-      avatar: `https://randomuser.me/api/portraits/${req.body.sexe}/${randomNum}.jpg`,
+      avatar: `https://randomuser.me/api/portraits/${req.body.gender}/${randomNum}.jpg`,
     });
 
     bcrypt.genSalt(10, function (err, salt) {

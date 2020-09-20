@@ -9,6 +9,7 @@ const UserSchema = mongoose.Schema({
   city: String,
   gov: String,
   date_of_birth: String,
+  gender: String,
   bio: String,
   avatar: String,
   theme: String,

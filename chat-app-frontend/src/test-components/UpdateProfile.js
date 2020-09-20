@@ -7,7 +7,7 @@ import { Typography, Divider } from "@material-ui/core";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import "../components/UpdateProfile.css";
 
-const govs = [
+export const govs = [
   "Ariana",
   "Béja",
   "Ben Arous",

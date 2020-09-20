@@ -74,7 +74,7 @@ const Sidebar = ({ children }) => {
               }}
             />
           </IconButton>
-          <Link to="/">
+          <Link to="/home">
             <IconButton>
               <ChatBubbleIcon
                 style={{
